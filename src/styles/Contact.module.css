@@ -1,0 +1,145 @@
+/* styles/Contact.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+.container {
+  max-width: 15000px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #131111;
+  border-radius: 10px;
+  font-family: "Lora", serif; /* Apply Lora font */
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.imageWrapper {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+}
+
+.image {
+  width: 100%;
+  border-radius: 10px;
+  max-height: 400px;
+  object-fit: cover;
+  font-family: "Lora", serif; /* Apply Lora font */
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(255, 255, 255); /* Text color black */
+  text-align: center;
+  font-family: "Lora", serif; /* Apply Lora font */
+}
+
+.imageOverlay h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.imageOverlay p {
+  font-size: 18px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.header p {
+  font-size: 18px;
+  color: #666666;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.formWrapper {
+  background-color: #1b1b1b;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333333;
+}
+
+.formGroup input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+.submitButton {
+  background-color: #0070f3;
+  color: #ffffff;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-self: flex-start;
+}
+
+.submitButton:hover {
+  background-color: #005bb5;
+}
+
+.info {
+  background-color: #181717;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.info h2 {
+  font-size: 24px;
+  color: #fcf5f5;
+  margin-bottom: 20px;
+}
+
+.info p {
+  font-size: 16px;
+  color: #f5f0f0;
+  margin-bottom: 10px;
+}
