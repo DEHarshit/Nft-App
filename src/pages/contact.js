@@ -8,9 +8,9 @@ const Contact = () => {
   return (
     <div>
       <Header/>
-    <div className='flex flex-col gap-1 p-4'>
+    <div className='flex flex-col gap-1 p-4 bg-black'>
       <div className='flex justify-center'>
-        <p className=" bg-gradient-to-r from-indigo-700 to-purple-900 font-primary font-medium text-xl text-transparent inline-block bg-clip-text">Have a question? Need help? Don't hesitate, drop us a line.</p>
+        <p className=" bg-gradient-to-t from-indigo-700 to-purple-900 font-primary font-medium text-xl text-transparent inline-block bg-clip-text">Have a question? Need help? Don't hesitate, drop us a line.</p>
       </div>
       <div className={styles.imageWrapper}>
         <img src="\image.jpg" alt="Get in Touch" className={styles.image} />
@@ -25,7 +25,7 @@ const Contact = () => {
         <div className={styles.formWrapper}>
           <form className={styles.form} class="flex flex-col gap-2">
             <div>
-              <h2 className='font-primary text-3xl font-semibold bg-gradient-to-r from-indigo-700 to-purple-900 inline-block text-transparent bg-clip-text'>Mail Us</h2>
+              <h2 className='font-primary text-3xl font-semibold bg-gradient-to-t from-indigo-700 to-purple-900 inline-block text-transparent bg-clip-text'>Mail Us</h2>
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="name">Name</label>
@@ -46,8 +46,8 @@ const Contact = () => {
             <button type="submit" className={styles.submitButton}>Submit</button>
           </form>
         </div>
-        <div className={styles.info}>
-          <h2>Contact Information</h2>
+        <div className="flex flex-col gap-3 w-[750px] bg-[#1b1b1b] rounded-lg p-[40px]">
+        <h2 className='font-primary text-3xl font-semibold bg-gradient-to-t from-indigo-700 to-purple-900 inline-block text-transparent bg-clip-text'>Contact Information</h2>
           <p>Email: office@xhibiter.com</p>
           <p>Phone: (123) 123-456</p>
           <p>Address: 08 W 36th St, New York NY 10001</p>

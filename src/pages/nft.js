@@ -2,11 +2,13 @@ import NftCard from "./components/NftCard";
 import Header from './components/Header'
 import Footer from './components/Footer'
 import nftData from "./components/nft_data"
+import Link from 'next/link'
+
 export default function nft(){
     return(
         <div>
             <Header/>
-                <div className="flex p-10 justify-center">
+                <div className="flex p-10 justify-center bg-black">
                     <div className="flex flex-col gap-8 bg-black">
                         <div className="inline-flex items-center gap-4">
                             <h2 className="font-primary font-semibold text-lg bg-gradient-to-r from-indigo-700 to-purple-900 inline-block text-transparent bg-clip-text">AUCTIONS</h2>
@@ -17,7 +19,8 @@ export default function nft(){
                         </div>
                         <div className="flex gap-6 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2">
                             {nftData.map((nft,index)=>(
-                                <NftCard
+                                <Link href={`/nftdetails?id=${nft.id}`}>
+                                    <NftCard
                                     key={index}
                                     image={nft.image}
                                     title={nft.title}
@@ -25,7 +28,8 @@ export default function nft(){
                                     price={nft.price}
                                     name={nft.name}
                                     currency={nft.currency}
-                                />
+                                    />
+                                </Link>
                             ))}
                         </div>
                     </div>
