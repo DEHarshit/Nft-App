@@ -15,7 +15,7 @@ export default function nft(){
                             <hr class="w-10 h-0.5 my-4 border-0 bg-gradient-to-r from-indigo-700 to-purple-900"></hr>
                         </div>
                         <div>
-                            <h2 class="font-primary text-3xl font-semibold leading-5 antialiased">Live Auctions</h2>
+                            <h2 class="font-primary text-white text-3xl font-semibold leading-5 antialiased">Live Auctions</h2>
                         </div>
                         <div className="flex gap-6 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2">
                             {nftData.map((nft,index)=>(
