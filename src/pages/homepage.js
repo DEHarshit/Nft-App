@@ -4,9 +4,19 @@ import nftData from "./components/nft_data"
 import NftCard from "./components/NftCard";
 import Link from 'next/link'
 
-const MAX_DISPLAY = 4;
-const displayData = Array.isArray(nftData) ? nftData.slice(0, MAX_DISPLAY) : [];
 const Homepage = () => {
+  
+const MAX_DISPLAY = 4;
+
+const displayData = Array.isArray(nftData) ? nftData.slice(0, MAX_DISPLAY) : [];
+
+if (!displayData) {
+  return(
+    <div>
+      Loading...
+    </div>
+  )
+}
     return (
       <div>
         <Header/>
@@ -72,7 +82,7 @@ const Homepage = () => {
         <hr className="w-10 h-0.5 my-4 border-0 bg-gradient-to-r from-indigo-700 to-purple-900" />
       </div>
       <div>
-        <h2 className="font-primary text-3xl text-red-600 font-semibold leading-5 antialiased">Live Auctions</h2>
+        <h2 className="font-primary text-3xl text-white font-semibold leading-5 antialiased">Live Auctions</h2>
       </div>
       <div className="flex gap-6 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2">
         {displayData.map((nft, index) => (

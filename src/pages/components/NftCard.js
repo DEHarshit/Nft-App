@@ -18,9 +18,7 @@ export default function NftCard({image,title,profile,name,price,currency}){
                     <div style={{backgroundImage:`URL(${profile}), url(/placeholder.png)`,backgroundPosition: "center",backgroundSize: "cover"}}
                         className="w-14 h-14 rounded-full"
                     ></div>
-                    <Link href={`/user?name=${name}`}>
                         <h2 className="text-lg transition-all text-white duration-400 hover:text-[#6610f2]">@{name ? name : "Username"}</h2>
-                    </Link>
                 </div>
                 <div className="flex justify-between">
                     <div className="flex gap-1"> {/* Profile Pic & Name */}
