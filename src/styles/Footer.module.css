@@ -1,50 +1,50 @@
-
+/* styles/Footer.module.css */
 
 .footer {
-    background-color: #000;
-    color: #fff;
-    padding: 40px 0;
-    font-family: 'Reddit Mono', sans-serif;
+    background-color: #000;  /* Black background */
+    color: #fff;  /* White text */
+    padding: 40px 20px;
 }
 
 .footerContainer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+}
+
+.footerTopSection {
+    flex-basis: 100%;  
+    margin-bottom: 20px;
+    text-align: center;  
 }
 
 .footerSection {
-    text-align: center;
+    flex: 1 1 200px; 
     margin-bottom: 20px;
+    padding: 0 15px;  
 }
 
 .footerTitle {
-    margin: 0 0 10px 0;
-    font-size: 24px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-family: 'Jacquard 12', sans-serif;
+    color: #fff;  
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.footerLinkTitle {
+    font-family: 'Jacquard 12', sans-serif;
+    color: #fff;  
+    font-size: 24px;  /* Increased font size for link titles */
+    margin-bottom: 10px;
 }
 
 .footerLinksContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-}
-
-.footerLinksSection {
-    text-align: left;
-}
-
-.footerLinkTitle {
-    margin: 0 0 10px 0;
-    font-size: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .footerLinksList {
@@ -55,13 +55,11 @@
 
 .footerLink {
     text-decoration: none;
-    color: #fff;
+    color: #fff;  /* White link text */
     margin-bottom: 5px;
     display: block;
-    transition: color 0.3s, transform 0.3s;
 }
 
 .footerLink:hover {
-    color: #007bff;
-    transform: scale(1.05);
+    color: #007bff;  /* Optional: Add a hover effect to change link color */
 }
