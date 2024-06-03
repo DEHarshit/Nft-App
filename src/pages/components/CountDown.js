@@ -6,7 +6,7 @@ const CountdownTimer = ({ date }) => {
       return <span>Time's up!</span>;
     } else {
       return (
-        <div className='flex font-primary gap-10 items-center'>
+        <div className='flex font-primary text-white gap-10 items-center'>
           <div className='flex flex-col'>
             <span className='leading-8 text-4xl tracking-wide'>{days}</span>
             <span className='translate-y-2 '>Days</span>
