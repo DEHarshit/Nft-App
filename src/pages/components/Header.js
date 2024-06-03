@@ -7,7 +7,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 export default function Header() {
     return (
         <header className={styles.header}>
-            <h1 className="font-primary text-5xl font-bold bg-gradient-to-r from-indigo-700 to-purple-900 inline-block p-2">NFT SHOPPY</h1>
+            <h1 className="font-primary text-5xl font-bold bg-gradient-to-r text-white from-indigo-700 to-purple-900 inline-block p-2">NFT SHOPPY</h1>
             <nav className={styles.nav}>
                 <ul className="flex items-center">
                     <li><Link href="/">

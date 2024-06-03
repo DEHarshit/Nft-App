@@ -22,7 +22,7 @@ export default function nftdetails() {
             <div className='sticky top-0 z-30 '>
                 <Header />
             </div>
-            <div className="flex justify-center gap-10 px-[150px]">
+            <div className="flex bg-black justify-center gap-10 px-[150px]">
                 <div className='bg-zinc-900 rounded-lg'>
                     <div className='p-5'>
                         <img src={`${nft.image}`} style={{
