@@ -15,6 +15,11 @@ export default function Header() {
                     <li><Link href="nft">
                     <button className={styles.button}>Explore NFTs</button>
                     </Link></li>
+                    <li>
+                        <Link href="form">
+                        <button className={styles.button}>Create NFT</button>
+                        </Link>
+                    </li>
                     <li><Link href="/contact"><button className={styles.button}>Contact Us</button></Link></li>
                     <li>
                     <ConnectButton />

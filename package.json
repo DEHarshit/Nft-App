@@ -11,12 +11,15 @@
   "dependencies": {
     "@rainbow-me/rainbowkit": "^2.1.2",
     "@tanstack/react-query": "^5.40.0",
+    "formidable": "^3.5.1",
+    "formik": "^2.4.6",
     "next": "^14.2.3",
     "react": "^18.3.1",
     "react-countdown": "^2.3.5",
     "react-dom": "^18.3.1",
     "viem": "^2.13.3",
-    "wagmi": "^2.9.8"
+    "wagmi": "^2.9.8",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "postcss": "^8",
