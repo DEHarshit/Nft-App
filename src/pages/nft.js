@@ -1,7 +1,7 @@
 import NftCard from "./components/NftCard";
 import Header from './components/Header'
 import Footer from './components/Footer'
-import nftData from "./components/nft_data"
+import nftData from "./components/form.json"
 import Link from 'next/link'
 
 export default function nft() {

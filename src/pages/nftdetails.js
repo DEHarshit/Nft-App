@@ -2,7 +2,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import nftData from "./components/nft_data"
+import nftData from "./components/form.json"
 import Link from 'next/link'
 
 const Countdown = dynamic(() => import('./components/CountDown'), { ssr: false });
@@ -11,15 +11,20 @@ export default function nftdetails() {
     const router = useRouter();
     const { id } = router.query;
     const nft = nftData.find(e => e.id === Number(id));
-    const target = new Date('2024-06-04T14:07:20');
+    let target;
     if (!nft) {
         return (
             <div>Loading...</div>
         )
     }
+    if (nft.saleEndDate) {
+        target = new Date(nft.saleEndDate);
+    } else {
+        target = new Date('2024-06-04T14:07:20');
+    }
     return (
         <div>
-            <div className='sticky top-0 z-30 '>
+            <div className='top-0 z-30 '>
                 <Header />
             </div>
             <div className="flex bg-black justify-center gap-10 px-[150px]">

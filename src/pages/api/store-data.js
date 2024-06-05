@@ -1,53 +1,48 @@
-import fs from 'fs';
+import fsPromises from 'fs/promises';
 import path from 'path';
-import { IncomingForm } from 'formidable';
+
+const filePath = path.join(process.cwd(), 'src/pages/components/form.json');
+const imagePath = path.join(process.cwd(), 'public/nfts')
+
+export default async function handler(req, res) {
+  if (req.method == "GET") {
+    const jsonData = await fsPromises.readFile(filePath);
+    const objectData = JSON.parse(jsonData);
+    res.status(200).json(objectData);
+  }
+  if (req.method == "POST") {
+    const jsonData = await fsPromises.readFile(filePath);
+    const objectData = JSON.parse(jsonData);
+    const { image, title, saleEndDate, price, currency, description } = req.body;
+
+    const newData = {
+      id: objectData.length + 1,
+      image,
+      title,
+      saleEndDate,
+      price,
+      currency,
+      description,
+      profile: "/nfts/profiles/avatar3.jpg",
+      name: "JohnDeo",
+    }
+    objectData.push(newData)
+
+    const updatedData = JSON.stringify(objectData);
+
+    await fsPromises.writeFile(filePath, updatedData);
+
+    res.status(201).json({ message: 'Data added successfully' });
+
+  }
+
+}
+
 
 export const config = {
   api: {
-    bodyParser: false,
+    bodyParser: {
+      sizeLimit: '10mb',
+    },
   },
 };
-
-export default function handler(req, res) {
-  if (req.method === 'POST') {
-    const form = new IncomingForm();
-    form.uploadDir = path.join(process.cwd(), 'public/nfts');
-    form.keepExtensions = true;
-
-    form.parse(req, (err, fields, files) => {
-      if (err) {
-        console.error('Error parsing the files:', err);
-        return res.status(500).json({ message: 'Error parsing the files' });
-      }
-
-      try {
-        const filePath = path.join(process.cwd(), 'src/pages/components/form.json');
-
-        if (!fs.existsSync(filePath)) {
-          fs.writeFileSync(filePath, JSON.stringify([]));
-        }
-
-        const existingData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        const newData = {
-          id: existingData.length + 1,
-          title: fields.title,
-          saleEndDate: fields.saleEndDate,
-          name: 'JohnDeo',
-          price: fields.price,
-          currency: fields.currency,
-          description: fields.description,
-        };
-
-        existingData.push(newData);
-        fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2));
-
-        res.status(200).json({ message: 'Data stored successfully' });
-      } catch (error) {
-        console.error('Error storing the data:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
-      }
-    });
-  } else {
-    res.status(405).json({ message: 'Method not allowed' });
-  }
-}
