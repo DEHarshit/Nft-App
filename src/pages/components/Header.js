@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import styles from '../../styles/Header.module.css';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import UserAddress from '../components/user';
+import UserAddress from './user_addr';
 
 export default function Header() {
     return (
