@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import styles from '../../styles/Header.module.css';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-
+import UserAddress from '../components/user';
 
 export default function Header() {
     return (
@@ -10,6 +10,7 @@ export default function Header() {
             <h1 className="font-primary text-5xl font-bold bg-gradient-to-r text-white from-indigo-700 to-purple-900 inline-block p-2">NFT SHOPPY</h1>
             <nav className={styles.nav}>
                 <ul className="flex items-center">
+                <UserAddress />
                     <li><Link href="/">
                     <button className={styles.button}>Home</button></Link></li>
                     <li><Link href="nft">
