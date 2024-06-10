@@ -52,5 +52,39 @@
         "name": "Junaid",
         "price": "3.5",
         "currency": "BNB"
+    },
+    {
+        "id": 7,
+        "image": "/nfts/hard.png",
+        "title": "hard",
+        "saleEndDate": "2024-06-20",
+        "price": 1,
+        "currency": "BTH",
+        "description": "elden ring",
+        "profile": "/nfts/profiles/avatar3.jpg",
+        "name": "JohnDeo"
+    },
+    {
+        "id": 8,
+        "image": "/nfts/dlc.png",
+        "title": "dlc",
+        "saleEndDate": "2024-06-20",
+        "price": 1,
+        "currency": "BTH",
+        "description": "new",
+        "profile": "/nfts/profiles/avatar3.jpg",
+        "name": "JohnDeo"
+    },
+    {
+        "id": 9,
+        "image": "/nfts/jump.png",
+        "title": "jump",
+        "saleEndDate": "2024-06-20",
+        "price": 1,
+        "currency": "BTH",
+        "description": "asdf",
+        "profile": "/nfts/profiles/avatar3.jpg",
+        "name": "JohnDeo",
+        "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
     }
 ]

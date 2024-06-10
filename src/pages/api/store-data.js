@@ -13,8 +13,7 @@ export default async function handler(req, res) {
   if (req.method == "POST") {
     const jsonData = await fsPromises.readFile(filePath);
     const objectData = JSON.parse(jsonData);
-    const { image, title, saleEndDate, price, currency, description } = req.body;
-
+    const { image, title, saleEndDate, price, currency, description, address } = req.body;
     const newData = {
       id: objectData.length + 1,
       image,
@@ -25,6 +24,7 @@ export default async function handler(req, res) {
       description,
       profile: "/nfts/profiles/avatar3.jpg",
       name: "JohnDeo",
+      useraddr:address,
     }
     objectData.push(newData)
 

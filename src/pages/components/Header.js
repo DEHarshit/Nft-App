@@ -4,7 +4,6 @@ import styles from '../../styles/Header.module.css';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import UserAddress from './user_addr';
 import { useAccount } from 'wagmi';
-
 export default function Header() {
     const { isConnected } = useAccount();
     if (!isConnected) {

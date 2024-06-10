@@ -3,7 +3,9 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import { Formik, Form as FormikForm, Field } from 'formik';
 import * as Yup from 'yup';
+import { useAccount } from 'wagmi';
 import { useRouter } from 'next/router';
+
 const FormSchema = Yup.object().shape({
   title: Yup.string().required('Title is required'),
   saleEndDate: Yup.date().required('Sale End Date is required'),
@@ -25,8 +27,8 @@ const Form = () => {
     }
   }
   const router = useRouter();
-
-
+  const { address, isConnected } = useAccount();
+  console.log(address);
   const handleSubmit = async (values, { setSubmitting }) => {
     let imageUrl = image;
     if (image !== '/placeholder.png' && image.indexOf('/nfts/') === -1) {
@@ -52,6 +54,7 @@ const Form = () => {
       price: values.price,
       currency: values.currency,
       description: values.description,
+      address: address,
     };
     
     async function saveData() {
@@ -67,6 +70,7 @@ const Form = () => {
     }
     
     await saveData();
+    router.push('/')
     setSubmitting(false);
   };
 
