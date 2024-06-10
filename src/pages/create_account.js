@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Header from './components/Header'
 import Footer from './components/Footer'
 import { Formik, Form as FormikForm, Field } from 'formik';
 import * as Yup from 'yup';
@@ -7,10 +6,7 @@ import { useAccount } from 'wagmi';
 import { useRouter } from 'next/router';
 
 const FormSchema = Yup.object().shape({
-  title: Yup.string().required('Title is required'),
-  saleEndDate: Yup.date().required('Sale End Date is required'),
-  price: Yup.number().required('Price is required').positive(),
-  currency: Yup.string().required('Currency is required'),
+  userid: Yup.string().required('Userid is required'),
   description: Yup.string().required('Description is required'),
 });
 
@@ -31,13 +27,13 @@ const Form = () => {
   console.log(address);
   const handleSubmit = async (values, { setSubmitting }) => {
     let imageUrl = image;
-    if (image !== '/placeholder.png' && image.indexOf('/nfts/') === -1) {
+    if (image !== '/placeholder.png' && image.indexOf('/nfts/profiles/') === -1) {
       const base64Data = image.replace(/^data:image\/\w+;base64,/, '');
       const buffer = Buffer.from(base64Data, 'base64');
 
-      const imageName = `${values.title.replace(/\s+/g, '-').toLowerCase()}.png`;
-      const imagePaths = `/nfts/${imageName}`;
-      const response = await fetch('/api/upload-image', {
+      const imageName = `${values.userid.replace(/\s+/g, '-').toLowerCase()}.png`;
+      const imagePaths = `/nfts/profiles/${imageName}`;
+      const response = await fetch('/api/upload-image-pf', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,10 +45,8 @@ const Form = () => {
     }
     const Data = {
       image: imageUrl,
-      title: values.title,
-      saleEndDate: values.saleEndDate,
-      price: values.price,
-      currency: values.currency,
+      userid: values.userid,
+
       description: values.description,
       address: address,
     };
@@ -65,7 +59,7 @@ const Form = () => {
         },
         body: JSON.stringify(Data),
       };
-      const response = await fetch(`/api/store-data`, postData);
+      const response = await fetch(`/api/store-urdata`, postData);
       console.log(response);
     }
     
@@ -77,7 +71,6 @@ const Form = () => {
   return (
     <div className='flex flex-col bg-black space-y-5'>
       <div className='sticky top-0 z-30'>
-        <Header />
       </div>
       <div className="absolute inset-0">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 465" version="1.1" className="w-full h-full">
@@ -117,10 +110,7 @@ const Form = () => {
         <h2 className="font-primary text-5xl font-semibold bg-gradient-to-r from-indigo-700 to-purple-900 inline-block text-transparent bg-clip-text">NFT + +</h2>
         <Formik
           initialValues={{
-            title: '',
-            saleEndDate: '',
-            price: '',
-            currency: 'BTH',
+            userid: '',
             description: '',
           }}
           validationSchema={FormSchema}
@@ -142,41 +132,14 @@ const Form = () => {
                     </div>
                   </div>
                 </div>
+
                 <div>
-                  <label className="block text-sm text-white font-medium text-gray-700">Title</label>
-                <Field name="title" className="text-black mt-1 p-2 border border-gray-300 rounded w-full" />
-                {errors.title && touched.title ? (
+                  <label className="block text-sm text-white font-medium text-gray-700">Userid</label>
+                <Field name="userid" className="text-black mt-1 p-2 border border-gray-300 rounded w-full" />
+                {errors.userid && touched.userid ? (
                   <div className="text-red-500 text-sm">{errors.title}</div>
                 ) : null}
                 </div>
-              </div>
-
-              <div className>
-                <label className="block text-sm text-white font-medium text-gray-700">Sale End Date</label>
-                <Field type="date" name="saleEndDate" className="text-black mt-1 p-2 border border-gray-300 rounded w-full" />
-                {errors.saleEndDate && touched.saleEndDate ? (
-                  <div className="text-red-500 text-sm">{errors.saleEndDate}</div>
-                ) : null}
-              </div>
-
-              <div className="mb-4">
-                <label className="block text-sm text-white font-medium text-gray-700">Price</label>
-                <Field name="price" type="number" className="text-black mt-1 p-2 border border-gray-300 rounded w-full" />
-                {errors.price && touched.price ? (
-                  <div className="text-red-500 text-sm">{errors.price}</div>
-                ) : null}
-              </div>
-
-              <div className="mb-4">
-                <label className="block text-sm text-white font-medium text-gray-700">Currency</label>
-                <Field as="select" name="currency" className="text-black mt-1 p-2 border border-gray-300 rounded w-full">
-                  <option value="BTH">BTH</option>
-                  <option value="ETH">ETH</option>
-                </Field>
-                {errors.currency && touched.currency ? (
-                  <div className="text-red-500 text-sm">{errors.currency}</div>
-                ) : null}
-              </div>
 
               <div className="mb-4">
                 <label className="block text-sm text-white font-medium text-gray-700">Description</label>
@@ -190,6 +153,7 @@ const Form = () => {
                 >
                 Submit
               </button>
+              </div>
             </FormikForm>
           )}
         </Formik>

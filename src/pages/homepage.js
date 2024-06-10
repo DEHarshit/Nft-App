@@ -83,15 +83,17 @@ const Homepage = () => {
             </div>
             <div className="flex gap-6 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2">
               {displayData.map((nft, index) => (
-                <NftCard
-                  id={nft.id}
-                  image={nft.image}
-                  title={nft.title}
-                  profile={nft.profile}
-                  price={nft.price}
-                  name={nft.name}
-                  currency={nft.currency}
-                />
+                <div key={index}>
+                  <NftCard
+                    id={nft.id}
+                    image={nft.image}
+                    title={nft.title}
+                    profile={nft.profile}
+                    price={nft.price}
+                    name={nft.name}
+                    currency={nft.currency}
+                  />
+                </div>
               ))}
             </div>
           </div>

@@ -1,8 +1,8 @@
 import fsPromises from 'fs/promises';
 import path from 'path';
 
-const filePath = path.join(process.cwd(), 'src/pages/components/form.json');
-const imagePath = path.join(process.cwd(), 'public/nfts')
+const filePath = path.join(process.cwd(), 'src/pages/components/urform.json');
+const imagePath = path.join(process.cwd(), 'public/nfts/profiles/')
 
 export default async function handler(req, res) {
   if (req.method == "GET") {
@@ -13,17 +13,12 @@ export default async function handler(req, res) {
   if (req.method == "POST") {
     const jsonData = await fsPromises.readFile(filePath);
     const objectData = JSON.parse(jsonData);
-    const { image, title, saleEndDate, price, currency, description, address } = req.body;
+    const { image, userid, description, address } = req.body;
     const newData = {
       id: objectData.length + 1,
       image,
-      title,
-      saleEndDate,
-      price,
-      currency,
+      userid,
       description,
-      profile: "/nfts/profiles/avatar3.jpg",
-      name: "JohnDeo",
       useraddr:address,
     }
     objectData.push(newData)
