@@ -4,12 +4,13 @@ import NftCard from './components/NftCard'
 import { useRouter } from 'next/router';
 import nftData from "./components/form.json"
 import Link from 'next/link'
+import urform from './components/urform.json';
 
 export default function user() {
     const router = useRouter();
     const { name } = router.query;
-    const nft = nftData.find(e => e.name === name);
-    if (!nft) {
+    const user = urform.find(e => e.userid === name);
+    if (!user) {
         return (
             <div>
                 Loading
@@ -40,12 +41,12 @@ export default function user() {
                             <div className='-translate-y-[160px]'>
                                 <div className='p-2 bg-gradient-to-b from-indigo-700 to-purple-900 w-[315px] h-[315px] rounded-full'>
                                     <div style={{
-                                        backgroundImage: `URL(${nft.profile}),URL(/placeholder.png)`,
+                                        backgroundImage: `URL(${user.image}),URL(/placeholder.png)`,
                                         backgroundPosition: "center",
                                         backgroundSize: "cover"
                                     }} className='rounded-full'>
                                         <div className="flex text-3xl leading-9 tracking-widest items-center justify-center hover:bg-black opacity-80 text-transparent hover:text-white h-[300px] w-[300px] transition-all rounded-full">
-                                            {nft.name ? nft.name : "Username"}
+                                            {user.userid ? user.userid : "Username"}
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +54,7 @@ export default function user() {
                             <div className='-translate-y-[160px]'>
                                 <div className='p-6 flex flex-col items-center space-y-10'>
                                     <h2 className='flex flex-col text-primary text-3xl text-semibold tracking-widest leading-9 transition-all text-white duration-400 hover:text-[#6610f2]'>
-                                        @{nft.name ? nft.name : "Username"}
+                                        @{user.userid ? user.userid : "Username"}
                                         <span className='text-sm text-zinc-500'>
                                             Joined May 2024
                                         </span>
