@@ -1,1 +1,147 @@
-[{"id":1,"image":"/nfts/nft1.jpg","title":"Arts","profile":"/nfts/profiles/avatar1.jpg","name":"MKHblots","price":"2.3","currency":"BNB"},{"id":2,"image":"/nfts/nft2.jpg","title":"Virtual Worlds","profile":"/nfts/profiles/avatar2.jpg","name":"Richard","price":"1.5","currency":"BNB"},{"id":3,"image":"/nfts/nft3.jpg","title":"Collectibles","profile":"/nfts/profiles/avatar3.jpg","name":"JohnDeo","price":"2.7","currency":"BNB"},{"id":4,"image":"/nfts/nft4.jpg","title":"Robotic Arts","profile":"/nfts/profiles/avatar4.jpg","name":"RioArham","price":"1.8","currency":"BNB"},{"id":5,"image":"/nfts/nft5.jpg","title":"Design Illusions","profile":"/nfts/profiles/avatar5.jpg","name":"ArtNox","price":"1.7","currency":"BNB"},{"id":6,"image":"/nfts/nft6.jpg","title":"Photography","profile":"/nfts/profiles/avatar6.jpg","name":"Junaid","price":"3.5","currency":"BNB"},{"id":7,"image":"/nfts/hard.png","title":"hard","saleEndDate":"2024-06-20","price":1,"currency":"BTH","description":"elden ring","profile":"/nfts/profiles/avatar3.jpg","name":"JohnDeo"},{"id":8,"image":"/nfts/dlc.png","title":"dlc","saleEndDate":"2024-06-20","price":1,"currency":"BTH","description":"new","profile":"/nfts/profiles/avatar3.jpg","name":"JohnDeo"},{"id":9,"image":"/nfts/jump.png","title":"jump","saleEndDate":"2024-06-20","price":1,"currency":"BTH","description":"asdf","profile":"/nfts/profiles/avatar3.jpg","name":"JohnDeo","useraddr":"0x40153856d73F85069121448693B6785CE69C48e7"},{"id":10,"image":"/nfts/bals123.png","description":"dstfyg","profile":"/nfts/profiles/avatar3.jpg","name":"JohnDeo","useraddr":"0x40153856d73F85069121448693B6785CE69C48e7"},{"id":11,"image":"/nfts/bals123.png","description":"ghj","profile":"/nfts/profiles/avatar3.jpg","name":"JohnDeo","useraddr":"0x40153856d73F85069121448693B6785CE69C48e7"}]
+[
+    {
+        "id": 1,
+        "image": "/nfts/nft1.jpg",
+        "title": "Arts",
+        "profile": "/nfts/profiles/avatar1.jpg",
+        "name": "MKHblots",
+        "price": "2.3",
+        "currency": "BNB"
+    },
+    {
+        "id": 2,
+        "image": "/nfts/nft2.jpg",
+        "title": "Virtual Worlds",
+        "profile": "/nfts/profiles/avatar2.jpg",
+        "name": "Richard",
+        "price": "1.5",
+        "currency": "BNB"
+    },
+    {
+        "id": 3,
+        "image": "/nfts/nft3.jpg",
+        "title": "Collectibles",
+        "profile": "/nfts/profiles/avatar3.jpg",
+        "name": "JohnDeo",
+        "price": "2.7",
+        "currency": "BNB"
+    },
+    {
+        "id": 4,
+        "image": "/nfts/nft4.jpg",
+        "title": "Robotic Arts",
+        "profile": "/nfts/profiles/avatar4.jpg",
+        "name": "RioArham",
+        "price": "1.8",
+        "currency": "BNB"
+    },
+    {
+        "id": 5,
+        "image": "/nfts/nft5.jpg",
+        "title": "Design Illusions",
+        "profile": "/nfts/profiles/avatar5.jpg",
+        "name": "ArtNox",
+        "price": "1.7",
+        "currency": "BNB"
+    },
+    {
+        "id": 6,
+        "image": "/nfts/nft6.jpg",
+        "title": "Photography",
+        "profile": "/nfts/profiles/avatar6.jpg",
+        "name": "Junaid",
+        "price": "3.5",
+        "currency": "BNB"
+    },
+    {
+        "id": 7,
+        "image": "/nfts/hard.png",
+        "title": "hard",
+        "saleEndDate": "2024-06-20",
+        "price": 1,
+        "currency": "BTH",
+        "description": "elden ring",
+        "profile": "/nfts/profiles/avatar3.jpg",
+        "name": "JohnDeo"
+    },
+    {
+        "id": 8,
+        "image": "/nfts/dlc.png",
+        "title": "dlc",
+        "saleEndDate": "2024-06-20",
+        "price": 1,
+        "currency": "BTH",
+        "description": "new",
+        "profile": "/nfts/profiles/avatar3.jpg",
+        "name": "JohnDeo"
+    },
+    {
+        "id": 9,
+        "image": "/nfts/jump.png",
+        "title": "jump",
+        "saleEndDate": "2024-06-20",
+        "price": 1,
+        "currency": "BTH",
+        "description": "asdf",
+        "profile": "/nfts/profiles/avatar3.jpg",
+        "name": "JohnDeo",
+        "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
+    },
+    {
+        "id": 10,
+        "image": "/nfts/bals123.png",
+        "description": "dstfyg",
+        "profile": "/nfts/profiles/avatar3.jpg",
+        "name": "JohnDeo",
+        "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
+    },
+    {
+        "id": 11,
+        "image": "/nfts/bals123.png",
+        "description": "ghj",
+        "profile": "/nfts/profiles/avatar3.jpg",
+        "name": "JohnDeo",
+        "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
+    },
+    {
+        "id": 12,
+        "image": "/nfts/nft-test-1.png",
+        "title": "Nft Test 1",
+        "saleEndDate": "2024-06-12",
+        "price": 1,
+        "currency": "ETH",
+        "description": "asdf",
+        "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
+    },
+    {
+        "id": 13,
+        "image": "/nfts/dark-souls.png",
+        "title": "Dark Souls",
+        "saleEndDate": "2024-06-19",
+        "price": 2998,
+        "currency": "BTH",
+        "description": "Asdf",
+        "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
+    },
+    {
+        "id": 14,
+        "image": "/nfts/asdf.png",
+        "title": "asdf",
+        "saleEndDate": "2024-06-15",
+        "price": 2,
+        "currency": "ETH",
+        "description": "asdf",
+        "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
+    },
+    {
+        "id": 15,
+        "image": "/nfts/fight.png",
+        "title": "fight",
+        "saleEndDate": "2024-06-26",
+        "price": 1,
+        "currency": "ETH",
+        "description": "qwerty",
+        "name": "Abhinav",
+        "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
+    }
+]

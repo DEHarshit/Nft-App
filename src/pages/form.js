@@ -5,6 +5,7 @@ import { Formik, Form as FormikForm, Field } from 'formik';
 import * as Yup from 'yup';
 import { useAccount } from 'wagmi';
 import { useRouter } from 'next/router';
+import urform from './components/urform.json';
 
 const FormSchema = Yup.object().shape({
   title: Yup.string().required('Title is required'),
@@ -15,6 +16,12 @@ const FormSchema = Yup.object().shape({
 });
 
 const Form = () => {
+  
+  const router = useRouter();
+  const { address } = useAccount();
+  console.log(address);
+  const { name } = router.query;
+  console.log(name)
   const [image, setImage] = useState('');
   function handleImageChange(e) {
     const file = e.target.files[0];
@@ -26,9 +33,6 @@ const Form = () => {
       reader.readAsDataURL(file);
     }
   }
-  const router = useRouter();
-  const { address, isConnected } = useAccount();
-  console.log(address);
   const handleSubmit = async (values, { setSubmitting }) => {
     let imageUrl = image;
     if (image !== '/placeholder.png' && image.indexOf('/nfts/') === -1) {
@@ -55,6 +59,7 @@ const Form = () => {
       currency: values.currency,
       description: values.description,
       address: address,
+      name: name
     };
     
     async function saveData() {
