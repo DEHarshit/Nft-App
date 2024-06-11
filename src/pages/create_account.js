@@ -22,6 +22,7 @@ const Form = () => {
       reader.readAsDataURL(file);
     }
   }
+  const [loading,setLoading] = useState(false);
   const router = useRouter();
   const { address, isConnected } = useAccount();
   console.log(address);
@@ -46,7 +47,6 @@ const Form = () => {
     const Data = {
       image: imageUrl,
       userid: values.userid,
-
       description: values.description,
       address: address,
     };
@@ -64,103 +64,118 @@ const Form = () => {
     }
     
     await saveData();
-    router.push('/')
+    setLoading(true);
+    setTimeout(()=> {
+      router.push('/');
+      setLoading(false)
+    },1000);
     setSubmitting(false);
   };
 
-  return (
-    <div className='flex flex-col bg-black space-y-5'>
-      <div className='sticky top-0 z-30'>
+  if(loading){
+    return(
+      <div>
+        Loading...
       </div>
-      <div className="absolute inset-0">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 465" version="1.1" className="w-full h-full">
-          <defs>
-            <linearGradient x1="49.7965246%" y1="28.2355058%" x2="49.7778147%" y2="98.4657689%" id="linearGradient-1">
-              <stop stopColor="rgba(69,40,220, 0.15)" offset="0%"></stop>
-              <stop stopColor="rgba(87,4,138, 0.15)" offset="100%"></stop>
-            </linearGradient>
-          </defs>
-          <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-            <polygon fill="url(#linearGradient-1)">
-              <animate
-                id="graph-animation"
-                xmlns="http://www.w3.org/2000/svg"
-                dur="1.5s"
-                attributeName="points"
-                values="
-                    0,464 0,464 111.6,464 282.5,464 457.4,464 613.4,464 762.3,464 912.3,464 1068.2,464 1191.2,464 1328.1,464 1440.1,464 1440.1,464 0,464; 
-                    0,464 0,367 111.6,323.3 282.5,373 457.4,423.8 613.4,464 762.3,464 912.3,464 1068.2,464 1191.2,464 1328.1,464 1440.1,464 1440.1,464 0,464; 
-                    0,464 0,367 111.6,263 282.5,336.6 457.4,363.5 613.4,414.4 762.3,464 912.3,464 1068.2,464 1191.2,464 1328.1,464 1440.1,464 1440.1,464 0,464; 
-                    0,464 0,367 111.6,263 282.5,282 457.4,323.3 613.4,340 762.3,425.6 912.3,464 1068.2,464 1191.2,464 1328.1,464 1440.1,464 1440.1,464 0,464; 
-                    0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,290.4 762.3,368 912.3,446.4 1068.2,464 1191.2,464 1328.1,464 1440.1,464 1440.1,464 0,464; 
-                    0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,329.6 912.3,420 1068.2,427.6 1191.2,464 1328.1,464 1440.1,464 1440.1,464 0,464; 
-                    0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,272 912.3,402.4 1068.2,373 1191.2,412 1328.1,464 1440.1,464 1440.1,464 0,464; 
-                    0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,272 912.3,376 1068.2,336.6 1191.2,334 1328.1,404 1440.1,464 1440.1,464 0,464; 
-                    0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,272 912.3,376 1068.2,282 1191.2,282 1328.1,314 1440.1,372.8 1440.1,464 0,464; 
-                    0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,272 912.3,376 1068.2,282 1191.2,204 1328.1,254 1440.1,236 1440.1,464 0,464; 
-                    0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,272 912.3,376 1068.2,282 1191.2,204 1328.1,164 1440.1,144.79999999999998 1440.1,464 0,464; 
-                    0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,272 912.3,376 1068.2,282 1191.2,204 1328.1,164 1440.1,8 1440.1,464 0,464;"
-                fill="freeze"
-              ></animate>
-            </polygon>
-          </g>
-        </svg>
-      </div>
-      <div className="flex flex-col space-y-2 w-[4500px] rounded-lg items-center relative inset-0 inline-block opacity-70 bg-zinc-900 z-10 max-w-lg mx-auto p-4 mb-4">
-        <h2 className="font-primary text-5xl font-semibold bg-gradient-to-r from-indigo-700 to-purple-900 inline-block text-transparent bg-clip-text">NFT + +</h2>
-        <Formik
-          initialValues={{
-            userid: '',
-            description: '',
-          }}
-          validationSchema={FormSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ errors, touched, isSubmitting }) => (
+    )
+  }
 
-            <FormikForm>
-              <div className="flex flex-col space-y-5 w-[350px]">
-                <div className="flex items-center justify-center">
-                  <div style={{
-                    backgroundImage: `url(${image})`,
-                    backgroundPosition: `center`,
-                    backgroundSize: `cover`
-                  }} className=" h-[250px] w-[250px] text-black text-2xl font-semibold rounded-lg border-black bg-blue-100">
-                    <div className='relative transition-all flex items-center justify-center h-[250px] w-[250px] opacity-60 hover:text-white text-transparent hover:bg-blue-900 border-4 border-black rounded-lg'>
-                      <label className='inset-0'>Add Image</label>
-                      <input type="file" accept="image/*" className='opacity-0 absolute inset-0' onChange={handleImageChange} />
+  else{
+    return (
+      <div className='flex flex-col bg-black space-y-5'>
+        <div className='sticky top-0 z-30'>
+        </div>
+        <div className="absolute inset-0">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 465" version="1.1" className="w-full h-full">
+            <defs>
+              <linearGradient x1="49.7965246%" y1="28.2355058%" x2="49.7778147%" y2="98.4657689%" id="linearGradient-1">
+                <stop stopColor="rgba(69,40,220, 0.15)" offset="0%"></stop>
+                <stop stopColor="rgba(87,4,138, 0.15)" offset="100%"></stop>
+              </linearGradient>
+            </defs>
+            <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+              <polygon fill="url(#linearGradient-1)">
+                <animate
+                  id="graph-animation"
+                  xmlns="http://www.w3.org/2000/svg"
+                  dur="1.5s"
+                  attributeName="points"
+                  values="
+                      0,464 0,464 111.6,464 282.5,464 457.4,464 613.4,464 762.3,464 912.3,464 1068.2,464 1191.2,464 1328.1,464 1440.1,464 1440.1,464 0,464; 
+                      0,464 0,367 111.6,323.3 282.5,373 457.4,423.8 613.4,464 762.3,464 912.3,464 1068.2,464 1191.2,464 1328.1,464 1440.1,464 1440.1,464 0,464; 
+                      0,464 0,367 111.6,263 282.5,336.6 457.4,363.5 613.4,414.4 762.3,464 912.3,464 1068.2,464 1191.2,464 1328.1,464 1440.1,464 1440.1,464 0,464; 
+                      0,464 0,367 111.6,263 282.5,282 457.4,323.3 613.4,340 762.3,425.6 912.3,464 1068.2,464 1191.2,464 1328.1,464 1440.1,464 1440.1,464 0,464; 
+                      0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,290.4 762.3,368 912.3,446.4 1068.2,464 1191.2,464 1328.1,464 1440.1,464 1440.1,464 0,464; 
+                      0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,329.6 912.3,420 1068.2,427.6 1191.2,464 1328.1,464 1440.1,464 1440.1,464 0,464; 
+                      0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,272 912.3,402.4 1068.2,373 1191.2,412 1328.1,464 1440.1,464 1440.1,464 0,464; 
+                      0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,272 912.3,376 1068.2,336.6 1191.2,334 1328.1,404 1440.1,464 1440.1,464 0,464; 
+                      0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,272 912.3,376 1068.2,282 1191.2,282 1328.1,314 1440.1,372.8 1440.1,464 0,464; 
+                      0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,272 912.3,376 1068.2,282 1191.2,204 1328.1,254 1440.1,236 1440.1,464 0,464; 
+                      0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,272 912.3,376 1068.2,282 1191.2,204 1328.1,164 1440.1,144.79999999999998 1440.1,464 0,464; 
+                      0,464 0,367 111.6,263 282.5,282 457.4,263 613.4,216 762.3,272 912.3,376 1068.2,282 1191.2,204 1328.1,164 1440.1,8 1440.1,464 0,464;"
+                  fill="freeze"
+                ></animate>
+              </polygon>
+            </g>
+          </svg>
+        </div>
+        <div className="flex flex-col space-y-2 w-[4500px] rounded-lg items-center relative inset-0 inline-block opacity-70 bg-zinc-900 z-10 max-w-lg mx-auto p-4 mb-4">
+          <h2 className="font-primary text-5xl font-semibold bg-gradient-to-r from-indigo-700 to-purple-900 inline-block text-transparent bg-clip-text">Create Account</h2>
+          <Formik
+            initialValues={{
+              userid: '',
+              description: '',
+            }}
+            validationSchema={FormSchema}
+            onSubmit={handleSubmit}
+          >
+            {({ errors, touched, isSubmitting }) => (
+  
+              <FormikForm>
+                <div className="flex flex-col space-y-5 w-[350px]">
+                  <div className="flex items-center justify-center">
+                    <div style={{
+                      backgroundImage: `url(${image})`,
+                      backgroundPosition: `center`,
+                      backgroundSize: `cover`
+                    }} className=" h-[250px] w-[250px] text-black text-2xl font-semibold rounded-full border-black bg-blue-100">
+                      <div className='relative transition-all flex items-center justify-center h-[250px] w-[250px] opacity-60 hover:text-white text-transparent hover:bg-zinc-800 border-4 border-black rounded-full'>
+                        <label className='inset-0'>Add Image</label>
+                        <input type="file" accept="image/*" className='opacity-0 absolute inset-0' onChange={handleImageChange} />
+                      </div>
                     </div>
                   </div>
+  
+                  <div>
+                    <label className="block text-sm text-white font-medium text-gray-700">Userid</label>
+                  <Field name="userid" className="text-black mt-1 p-2 border border-gray-300 rounded w-full" />
+                  {errors.userid && touched.userid ? (
+                    <div className="text-red-500 text-sm">{errors.title}</div>
+                  ) : null}
+                  </div>
+  
+                <div className="mb-4">
+                  <label className="block text-sm text-white font-medium text-gray-700">Description</label>
+                  <Field as="textarea" name="description" className="text-black p-2 border border-gray-300 rounded w-full" />
+                  {errors.description && touched.description ? (
+                    <div className="text-red-500 text-sm">{errors.description}</div>
+                  ) : null}
                 </div>
-
-                <div>
-                  <label className="block text-sm text-white font-medium text-gray-700">Userid</label>
-                <Field name="userid" className="text-black mt-1 p-2 border border-gray-300 rounded w-full" />
-                {errors.userid && touched.userid ? (
-                  <div className="text-red-500 text-sm">{errors.title}</div>
-                ) : null}
+  
+                <button type="submit" onclick={handleSubmit}className="mt-4 w-32 h-12 text-white px-4 py-2 bg-zinc-800 rounded hover:bg-white hover:text-zinc-800 hover:shadow-lg hover:shadow-white/50"
+                  >
+                  Submit
+                </button>
                 </div>
-
-              <div className="mb-4">
-                <label className="block text-sm text-white font-medium text-gray-700">Description</label>
-                <Field as="textarea" name="description" className="text-black p-2 border border-gray-300 rounded w-full" />
-                {errors.description && touched.description ? (
-                  <div className="text-red-500 text-sm">{errors.description}</div>
-                ) : null}
-              </div>
-
-              <button type="submit" onclick={handleSubmit}className="mt-4 w-32 h-12 text-white px-4 py-2 bg-zinc-800 rounded hover:bg-white hover:text-zinc-800 hover:shadow-lg hover:shadow-white/50"
-                >
-                Submit
-              </button>
-              </div>
-            </FormikForm>
-          )}
-        </Formik>
+              </FormikForm>
+            )}
+          </Formik>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  );
+    );
+  }
+
 };
 
 export default Form;
