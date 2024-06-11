@@ -44,7 +44,6 @@ const Form = () => {
       const data = await response.json();
       imageUrl = data.imageUrl;
     }
-    
     const Data = {
       image: imageUrl,
       userid: values.userid,
@@ -176,6 +175,7 @@ const Form = () => {
       </div>
     );
   }
+
 };
 
 export default Form;

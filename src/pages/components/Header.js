@@ -6,7 +6,6 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import UserAddress from './user_addr';
 import { useAccount } from 'wagmi';
 import urform from './urform.json';
-
 export default function Header() {
     const { address, isConnected } = useAccount();
     const router = useRouter();

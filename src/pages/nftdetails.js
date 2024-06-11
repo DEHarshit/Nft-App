@@ -1,9 +1,10 @@
-import Header from './components/Header'
-import Footer from './components/Footer'
+import { useState } from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import nftData from "./components/form.json"
-import Link from 'next/link'
+import nftData from "./components/form.json";
+import Link from 'next/link';
 
 const Countdown = dynamic(() => import('./components/CountDown'), { ssr: false });
 
@@ -11,20 +12,47 @@ export default function nftdetails() {
     const router = useRouter();
     const { id } = router.query;
     const nft = nftData.find(e => e.id === Number(id));
+
     let target;
     if (!nft) {
         return (
             <div>Loading...</div>
-        )
+        );
     }
     if (nft.saleEndDate) {
         target = new Date(nft.saleEndDate);
     } else {
         target = new Date('2024-06-04T14:07:20');
     }
+
+    const handleBuyNow = async () => {
+        try {
+            const response = await fetch('/api/update-owner', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id, newName: 'JohnDeo' }), // Change 'nabeel' to the new owner's name
+            });
+
+            console.log(JSON.stringify({ id, newName: 'JohnDeo' }));
+
+            if (response.ok) {
+                const data = await response.json();
+                alert(`Congratulations! You have successfully purchased ${nft.title}.`);
+            } else {
+                const errorData = await response.json();
+                alert(`Failed to update owner: ${errorData.error}`);
+            }
+        } catch (error) {
+            console.error('Error buying NFT:', error);
+            alert('Failed to update owner: An error occurred.');
+        }
+    };
+
     return (
         <div>
-            <div className='top-0 z-30 '>
+            <div className='top-0 z-30'>
                 <Header />
             </div>
             <div className="flex bg-black justify-center gap-10 px-[150px]">
@@ -56,14 +84,14 @@ export default function nftdetails() {
                             <h2 className='font-primary text-white text-xl'>Sale Ends In...</h2>
                             <Countdown date={target} />
                         </div>
-                        <hr class="w-[500px] h-0.5 my-4 border-0 bg-gradient-to-r from-indigo-700 to-purple-900"></hr>
+                        <hr className="w-[500px] h-0.5 my-4 border-0 bg-gradient-to-r from-indigo-700 to-purple-900"></hr>
                         <div className='flex flex-col space-y-5'>
                             <div>
                                 <h2 className='text-primary text-zinc-400'>Current Price</h2>
                                 <h2 className='text-primary text-white text-[30px] font-semibold'>{nft.price} <span>{nft.currency}</span></h2>
                             </div>
                             <div>
-                                <button className="font-primary h-12 w-36 bg-blue-600 hover:bg-blue-500 transition-all text-white font-bold py-2 px-4 rounded-md">
+                                <button onClick={handleBuyNow} className="font-primary h-12 w-36 bg-blue-600 hover:bg-blue-500 transition-all text-white font-bold py-2 px-4 rounded-md">
                                     Buy now
                                 </button>
                             </div>
@@ -71,12 +99,12 @@ export default function nftdetails() {
                     </div>
                     <div className='w-full h-full flex flex-col g-7 rounded-lg bg-zinc-900 p-5'>
                         <h2 className='font-primary text-white text-xl'>Description</h2>
-                        <hr class="w-[500px] h-0.5 my-4 border-0 bg-gradient-to-r from-indigo-700 to-purple-900"></hr>
+                        <hr className="w-[500px] h-0.5 my-4 border-0 bg-gradient-to-r from-indigo-700 to-purple-900"></hr>
                         <h2 className='text-white'>We are here to remind you you're never alone in this journey !</h2>
                     </div>
                 </div>
             </div>
             <Footer />
         </div>
-    )
+    );
 }

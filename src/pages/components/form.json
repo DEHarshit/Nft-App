@@ -103,45 +103,5 @@
         "name": "JohnDeo",
         "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
     },
-    {
-        "id": 12,
-        "image": "/nfts/nft-test-1.png",
-        "title": "Nft Test 1",
-        "saleEndDate": "2024-06-12",
-        "price": 1,
-        "currency": "ETH",
-        "description": "asdf",
-        "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
-    },
-    {
-        "id": 13,
-        "image": "/nfts/dark-souls.png",
-        "title": "Dark Souls",
-        "saleEndDate": "2024-06-19",
-        "price": 2998,
-        "currency": "BTH",
-        "description": "Asdf",
-        "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
-    },
-    {
-        "id": 14,
-        "image": "/nfts/asdf.png",
-        "title": "asdf",
-        "saleEndDate": "2024-06-15",
-        "price": 2,
-        "currency": "ETH",
-        "description": "asdf",
-        "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
-    },
-    {
-        "id": 15,
-        "image": "/nfts/fight.png",
-        "title": "fight",
-        "saleEndDate": "2024-06-26",
-        "price": 1,
-        "currency": "ETH",
-        "description": "qwerty",
-        "name": "Abhinav",
-        "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
-    }
+   
 ]
