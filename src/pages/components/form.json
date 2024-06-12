@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
     {
         "id": 1,
@@ -145,3 +146,6 @@
         "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
     }
 ]
+=======
+[{"id":1,"image":"/nfts/nft1.jpg","title":"Arts","name":"sad","price":"2.3","currency":"BNB"},{"id":2,"image":"/nfts/nft2.jpg","title":"Virtual Worlds","name":"JohnDeo","price":"1.5","currency":"BNB"},{"id":3,"image":"/nfts/nft3.jpg","title":"Collectibles","name":"MKHblots","price":"2.7","currency":"BNB"},{"id":4,"image":"/nfts/nft4.jpg","title":"Robotic Arts","name":"RioArham","price":"1.8","currency":"BNB"},{"id":5,"image":"/nfts/nft5.jpg","title":"Design Illusions","name":"ArtNox","price":"1.7","currency":"BNB"},{"id":6,"image":"/nfts/nft6.jpg","title":"Photography","name":"Junaid","price":"3.5","currency":"BNB"},{"id":7,"image":"/nfts/hard.png","title":"Shadow of the Erdtree","saleEndDate":"2024-06-20","price":1,"currency":"BTH","description":"elden ring","name":"JohnDeo"},{"id":8,"image":"/nfts/dlc.png","title":"dlc","saleEndDate":"2024-06-20","price":1,"currency":"BTH","description":"new","name":"Richard"}]
+>>>>>>> 2634d181ff4cdcbfa88f4f0f5e636d373cb5da3b

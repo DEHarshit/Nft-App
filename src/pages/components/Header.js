@@ -6,7 +6,6 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import UserAddress from './user_addr';
 import { useAccount } from 'wagmi';
 import urform from './urform.json';
-
 export default function Header() {
     const { address, isConnected } = useAccount();
     const router = useRouter();
@@ -14,7 +13,8 @@ export default function Header() {
     const [user, setUser] = useState('')
     useEffect(() => {
         if (isConnected) {
-            const userExists = urform.some(user => user.useraddr.toLowerCase() === address.toLowerCase());
+            console.log(urform)
+            const userExists = urform.find(e => e.useraddr === address);
             if (!userExists) {
                 router.push('/create_account');
             } else {

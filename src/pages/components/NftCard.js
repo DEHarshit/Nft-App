@@ -1,5 +1,8 @@
 import Link from 'next/link'
-export default function NftCard({ id, image, title, profile, name, price, currency }) {
+import urform from './urform.json'
+export default function NftCard({ id, image, title, name, price, currency }) {
+    
+    const user = urform.find(e => e.userid === name);
     return (
         <div style={{ height: "448px" }} className="flex flex-col p-6 justify-between rounded-lg bg-zinc-800 w-fit hover:-translate-y-3 transition-all duration-500">
             <Link href={`/nftdetails?id=${id}`}>
@@ -21,7 +24,7 @@ export default function NftCard({ id, image, title, profile, name, price, curren
                 </Link>
                 <Link href={`/user?name=${name}`} className='w-fit'>
                     <div className="font-primary flex gap-2 items-center w-fit"> {/* Profile Pic & Name */}
-                        <div style={{ backgroundImage: `URL(${profile}), url(/placeholder.png)`, backgroundPosition: "center", backgroundSize: "cover" }}
+                        <div style={{ backgroundImage: `URL(${user.image}), url(/placeholder.png)`, backgroundPosition: "center", backgroundSize: "cover" }}
                             className="w-14 h-14 rounded-full"
                         ></div>
                         <h2 className="text-lg transition-all text-white duration-400 hover:text-[#6610f2] inline-block">@{name ? name : "Username"}</h2>

@@ -44,7 +44,10 @@ const Form = () => {
       const data = await response.json();
       imageUrl = data.imageUrl;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 2634d181ff4cdcbfa88f4f0f5e636d373cb5da3b
     const Data = {
       image: imageUrl,
       userid: values.userid,
