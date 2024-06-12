@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import nftData from "./components/form.json"
 import Link from 'next/link'
 import urform from './components/urform.json';
+
 import { useAccount } from 'wagmi';
 
 export default function user() {
@@ -12,6 +13,7 @@ export default function user() {
     const router = useRouter();
     const { name } = router.query;
     const user = urform.find(e => e.userid === name);
+
     const curruser=urform.find(e => e.useraddr === address);
     if (!user || !curruser) {
         return (
@@ -80,7 +82,7 @@ export default function user() {
                                         {user.userid !== curruser.userid ?"USER NFTS" : "MY NFTS"}
                                         </h2>
                                 </div>
-                                <div className='flex grid grid-cols-4 gap-x-1 gap-y-5'>
+                                <div className='flex grid grid-cols-3  gap-y-5'>
                                     {nftData.map((nft, index) => (
                                         nft.name == name ?
                                             (

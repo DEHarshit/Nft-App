@@ -1,6 +1,6 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
-import nftData from "./components/nft_data"
+import nftData from "./components/form.json"
 import NftCard from "./components/NftCard";
 import Link from 'next/link'
 
@@ -83,17 +83,16 @@ const Homepage = () => {
             </div>
             <div className="flex gap-6 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2">
               {displayData.map((nft, index) => (
-                <div key={index}>
-                  <NftCard
-                    id={nft.id}
-                    image={nft.image}
-                    title={nft.title}
-                    profile={nft.profile}
-                    price={nft.price}
-                    name={nft.name}
-                    currency={nft.currency}
-                  />
-                </div>
+                <NftCard
+                  id={nft.id}
+                  key={index}
+                  image={nft.image}
+                  title={nft.title}
+                  profile={nft.profile}
+                  price={nft.price}
+                  name={nft.name}
+                  currency={nft.currency}
+                />
               ))}
             </div>
           </div>
