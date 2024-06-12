@@ -3,67 +3,67 @@
         "id": 1,
         "image": "/nfts/nft1.jpg",
         "title": "Arts",
-        "name": "sad",
-        "price": "2.3",
-        "currency": "BNB"
+        "name": "Abhinav",
+        "price": 0.001,
+        "currency": "ETH"
     },
     {
         "id": 2,
         "image": "/nfts/nft2.jpg",
         "title": "Virtual Worlds",
-        "name": "JohnDeo",
-        "price": "1.5",
-        "currency": "BNB"
+        "name": "Abhinav",
+        "price": 0.001,
+        "currency": "ETH"
     },
     {
         "id": 3,
         "image": "/nfts/nft3.jpg",
         "title": "Collectibles",
-        "name": "MKHblots",
-        "price": "2.7",
-        "currency": "BNB"
+        "name": "Abhinav",
+        "price": 0.001,
+        "currency": "ETH"
     },
     {
         "id": 4,
         "image": "/nfts/nft4.jpg",
         "title": "Robotic Arts",
-        "name": "RioArham",
-        "price": "1.8",
-        "currency": "BNB"
+        "name": "Abhinav",
+        "price": 0.001,
+        "currency": "ETH"
     },
     {
         "id": 5,
         "image": "/nfts/nft5.jpg",
         "title": "Design Illusions",
         "name": "ArtNox",
-        "price": "1.7",
-        "currency": "BNB"
+        "price": 0.001,
+        "currency": "ETH"
     },
     {
         "id": 6,
         "image": "/nfts/nft6.jpg",
         "title": "Photography",
         "name": "Junaid",
-        "price": "3.5",
-        "currency": "BNB"
+        "price": 0.001,
+        "currency": "ETH"
     },
     {
         "id": 7,
         "image": "/nfts/hard.png",
         "title": "Shadow of the Erdtree",
         "saleEndDate": "2024-06-20",
-        "price": 1,
-        "currency": "BTH",
+        "price": 0.001,
+        "currency": "ETH",
         "description": "elden ring",
-        "name": "JohnDeo"
+        "name": "Abhinav"
     },
     {
         "id": 8,
         "image": "/nfts/dlc.png",
         "title": "dlc",
         "saleEndDate": "2024-06-20",
-        "price": 1,
-        "currency": "BTH",
+        "price": 0.001,
+        "currency": "ETH",
         "description": "new",
         "name": "Richard"
     }

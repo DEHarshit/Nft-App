@@ -82,7 +82,7 @@ export default function user() {
                                         {user.userid !== curruser.userid ?"USER NFTS" : "MY NFTS"}
                                         </h2>
                                 </div>
-                                <div className='flex grid grid-cols-4 gap-x-1 gap-y-5'>
+                                <div className='flex grid grid-cols-3  gap-y-5'>
                                     {nftData.map((nft, index) => (
                                         nft.name == name ?
                                             (

@@ -7,20 +7,24 @@ import nftData from "./components/form.json";
 import Link from 'next/link';
 import urform from './components/urform.json';
 import { useAccount } from 'wagmi';
+import BuyButton from './components/BuyButton';
 
 const Countdown = dynamic(() => import('./components/CountDown'), { ssr: false });
 
 export default function nftdetails() {
     const { address, isConnected } = useAccount();
 
-    const user=urform.find(e => e.useraddr === address);
+    const user = urform.find(e => e.useraddr === address);
     console.log(user)
     const router = useRouter();
     const { id } = router.query;
     const nft = nftData.find(e => e.id === Number(id));
-
-    let target;
+    const [thisuser,setThisuser] = useState([]);
+        let target;
     if (!nft || !user) {
+        setThisuser(urform.find(e => e.userid === nft.name));
+        console.log(thisuser.useraddr)
+
         return (
             <div>Loading...</div>
         );
@@ -97,9 +101,10 @@ export default function nftdetails() {
                             </div>
                             <div>
                                 {nft.name !== user.userid ?
-                                    <button onClick={handleBuyNow} className="font-primary h-12 w-36 bg-blue-600 hover:bg-blue-500 transition-all text-white font-bold py-2 px-4 rounded-md">
-                                        Buy now
-                                    </button>
+                                    <BuyButton
+                                        id={id}
+                                        userid={user.userid}
+                                    />
                                     : null}
 
                             </div>
