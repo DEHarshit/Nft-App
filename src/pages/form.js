@@ -18,7 +18,7 @@ const FormSchema = Yup.object().shape({
 const Form = () => {
   
   const router = useRouter();
-  const { address } = useAccount();
+  const { address, isConnected } = useAccount();
   console.log(address);
   const { name } = router.query;
   console.log(name)
@@ -33,8 +33,6 @@ const Form = () => {
       reader.readAsDataURL(file);
     }
   }
-  const router = useRouter();
-  const { address, isConnected } = useAccount();
   console.log(address);
   const handleSubmit = async (values, { setSubmitting }) => {
     let imageUrl = image;

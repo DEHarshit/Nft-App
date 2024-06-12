@@ -1,20 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import nftData from "./components/form.json";
 import Link from 'next/link';
+import urform from './components/urform.json';
+import { useAccount } from 'wagmi';
 
 const Countdown = dynamic(() => import('./components/CountDown'), { ssr: false });
 
 export default function nftdetails() {
+    const { address, isConnected } = useAccount();
+
+    const user=urform.find(e => e.useraddr === address);
+    console.log(user)
     const router = useRouter();
     const { id } = router.query;
     const nft = nftData.find(e => e.id === Number(id));
 
     let target;
-    if (!nft) {
+    if (!nft || !user) {
         return (
             <div>Loading...</div>
         );
@@ -24,7 +30,6 @@ export default function nftdetails() {
     } else {
         target = new Date('2024-06-04T14:07:20');
     }
-
     const handleBuyNow = async () => {
         try {
             const response = await fetch('/api/update-owner', {
@@ -32,10 +37,10 @@ export default function nftdetails() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ id, newName: 'JohnDeo' }), // Change 'nabeel' to the new owner's name
+                body: JSON.stringify({ id, newName: user.userid }), // Change 'nabeel' to the new owner's name
             });
 
-            console.log(JSON.stringify({ id, newName: 'JohnDeo' }));
+            console.log(JSON.stringify({ id, newName: user.userid }));
 
             if (response.ok) {
                 const data = await response.json();
@@ -91,9 +96,12 @@ export default function nftdetails() {
                                 <h2 className='text-primary text-white text-[30px] font-semibold'>{nft.price} <span>{nft.currency}</span></h2>
                             </div>
                             <div>
-                                <button onClick={handleBuyNow} className="font-primary h-12 w-36 bg-blue-600 hover:bg-blue-500 transition-all text-white font-bold py-2 px-4 rounded-md">
-                                    Buy now
-                                </button>
+                                {nft.name !== user.userid ?
+                                    <button onClick={handleBuyNow} className="font-primary h-12 w-36 bg-blue-600 hover:bg-blue-500 transition-all text-white font-bold py-2 px-4 rounded-md">
+                                        Buy now
+                                    </button>
+                                    : null}
+
                             </div>
                         </div>
                     </div>

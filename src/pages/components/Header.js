@@ -13,7 +13,8 @@ export default function Header() {
     const [user, setUser] = useState('')
     useEffect(() => {
         if (isConnected) {
-            const userExists = urform.some(user => user.useraddr.toLowerCase() === address.toLowerCase());
+            console.log(urform)
+            const userExists = urform.find(e => e.useraddr === address);
             if (!userExists) {
                 router.push('/create_account');
             } else {
@@ -41,10 +42,6 @@ export default function Header() {
                 </div>
             </div>
         );
-    }
-
-    if (!isUserValid) {
-        return null;
     }
 
     return (

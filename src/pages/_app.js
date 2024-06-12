@@ -9,6 +9,7 @@ import {
 import { WagmiProvider } from 'wagmi';
 import {
   mainnet,
+  sepolia,
   polygon,
   optimism,
   arbitrum,
@@ -22,7 +23,7 @@ import {
 const config = getDefaultConfig({
   appName: 'nft-app',
   projectId: 'YOUR_PROJECT_ID',
-  chains: [mainnet, polygon, optimism, arbitrum, base],
+  chains: [mainnet,sepolia, polygon, optimism, arbitrum, base],
   ssr: true, // If your dApp uses server side rendering (SSR)
 });
 
