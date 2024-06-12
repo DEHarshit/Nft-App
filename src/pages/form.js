@@ -33,12 +33,6 @@ const Form = () => {
       reader.readAsDataURL(file);
     }
   }
-<<<<<<< HEAD
-=======
-  const router = useRouter();
-  const { address, isConnected } = useAccount();
-  console.log(address);
->>>>>>> 61e1177244ad756e4d583191fd309e5f7b0d1729
   const handleSubmit = async (values, { setSubmitting }) => {
     let imageUrl = image;
     if (image !== '/placeholder.png' && image.indexOf('/nfts/') === -1) {

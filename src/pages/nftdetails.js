@@ -19,12 +19,8 @@ export default function nftdetails() {
     const router = useRouter();
     const { id } = router.query;
     const nft = nftData.find(e => e.id === Number(id));
-    const [thisuser,setThisuser] = useState([]);
-        let target;
-    if (!nft || !user) {
-        setThisuser(urform.find(e => e.userid === nft.name));
-        console.log(thisuser.useraddr)
-
+    let target;
+    if (!nft ) {
         return (
             <div>Loading...</div>
         );
@@ -104,6 +100,8 @@ export default function nftdetails() {
                                     <BuyButton
                                         id={id}
                                         userid={user.userid}
+                                        sellerid={nft.name}
+                                        price={nft.price}
                                     />
                                     : null}
 

@@ -1,6 +1,6 @@
 import fsPromises from 'fs/promises';
 import path from 'path';
-import nftData from '../components/nft_data';
+import nftData from '../components/form.json';
 const filePath = path.join(process.cwd(), 'src/pages/components/form.json');
 
 export default async function handler(req, res) {

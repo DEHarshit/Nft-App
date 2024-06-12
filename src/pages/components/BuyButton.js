@@ -2,25 +2,29 @@ import React from 'react';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { ethers } from 'ethers';
 import { sepolia } from 'wagmi/chains';
+import urform from './urform.json';
 
-function BuyButton ({id,userid}) {
+
+function BuyButton ({id,userid,sellerid,price}) {
   const { address, isConnected } = useAccount();
   const { connect, connectors } = useConnect();
   const { disconnect } = useDisconnect();
+
+  const seller = urform.find((e)=>e.userid === sellerid)
 
   const handleBuy = async () => {
     if (!isConnected) {
       connect(connectors[0]); 
       return;
     }
-    const garbageAddress = '0x0000000000000000000000000000000000000000';
+    const garbageAddress = seller.useraddr;
     const provider = new ethers.providers.Web3Provider(window.ethereum, sepolia.chainId);
     const signer = provider.getSigner();
 
     try {
       const tx = await signer.sendTransaction({
         to: garbageAddress,
-        value: ethers.utils.parseEther('0.001') 
+        value: ethers.utils.parseEther(`${price}`) 
       });
       await tx.wait(); 
       alert('Transaction successful! 0.01 ETH has been sent.');
@@ -52,6 +56,14 @@ function BuyButton ({id,userid}) {
     }
     
   };
+
+  if (!seller){
+    return(
+      <div>
+        Loading...
+      </div>
+    )
+  }
   return (
     <div>
       {isConnected ? (
