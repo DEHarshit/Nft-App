@@ -5,6 +5,7 @@ import nftData from "./components/form.json"
 import Link from 'next/link'
 
 export default function nft() {
+    const curr = new Date();
     return (
         <div>
             <div className='sticky top-0 z-30'>
@@ -20,18 +21,22 @@ export default function nft() {
                         <h2 className="font-primary text-white text-3xl font-semibold leading-5 antialiased">Live Auctions</h2>
                     </div>
                     <div className="flex gap-6 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2">
-                        {nftData.map((nft, index) => (
-                            <NftCard
-                                id={nft.id}
-                                key={index}
-                                image={nft.image}
-                                title={nft.title}
-                                profile={nft.profile}
-                                price={nft.price}
-                                name={nft.name}
-                                currency={nft.currency}
-                            />
-                        ))}
+                        {nftData.map((nft, index) => {
+                            const saleEndDate = new Date(nft.saleEndDate);
+                            return (saleEndDate >= curr)
+                                ?
+                                <NftCard
+                                    id={nft.id}
+                                    key={index}
+                                    image={nft.image}
+                                    title={nft.title}
+                                    profile={nft.profile}
+                                    price={nft.price}
+                                    name={nft.name}
+                                    currency={nft.currency} />
+                                : null
+
+                        })}
                     </div>
                 </div>
             </div>

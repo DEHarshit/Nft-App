@@ -20,13 +20,15 @@ export default function nftdetails() {
     const { id } = router.query;
     const nft = nftData.find(e => e.id === Number(id));
     let target;
-    if (!nft ) {
+    let curr;
+    if (!nft) {
         return (
             <div>Loading...</div>
         );
     }
     if (nft.saleEndDate) {
         target = new Date(nft.saleEndDate);
+        curr = new Date();
     } else {
         target = new Date('2024-06-04T14:07:20');
     }
@@ -86,7 +88,6 @@ export default function nftdetails() {
                     </div>
                     <div className='w-[550px] flex flex-col rounded-lg bg-zinc-900 p-5'>
                         <div className='flex flex-col gap-5'>
-                            <h2 className='font-primary text-white text-xl'>Sale Ends In...</h2>
                             <Countdown date={target} />
                         </div>
                         <hr className="w-[500px] h-0.5 my-4 border-0 bg-gradient-to-r from-indigo-700 to-purple-900"></hr>
@@ -97,12 +98,13 @@ export default function nftdetails() {
                             </div>
                             <div>
                                 {nft.name !== user.userid ?
-                                    <BuyButton
-                                        id={id}
-                                        userid={user.userid}
-                                        sellerid={nft.name}
-                                        price={nft.price}
-                                    />
+                                    (target > curr)?
+                                        <BuyButton
+                                            id={id}
+                                            userid={user.userid}
+                                            sellerid={nft.name}
+                                            price={nft.price}
+                                        /> : null
                                     : null}
 
                             </div>

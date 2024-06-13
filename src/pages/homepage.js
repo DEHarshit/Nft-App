@@ -3,12 +3,22 @@ import Footer from './components/Footer'
 import nftData from "./components/form.json"
 import NftCard from "./components/NftCard";
 import Link from 'next/link'
+import { useEffect, useState } from 'react';
 
 const Homepage = () => {
 
   const MAX_DISPLAY = 4;
+  const [ind,setInd] = useState(0);
+  const [nfts,setNfts] = useState([])
+  const curr = new Date();
 
-  const displayData = Array.isArray(nftData) ? nftData.slice(0, MAX_DISPLAY) : [];
+  useEffect(()=>{
+    if (ind < 4){
+      setNfts(nftData.filter(nft => new Date(nft.saleEndDate) >= curr))
+      setInd(ind+1)
+      console.log(nfts)
+    }
+  },[ind])
 
   return (
     <div>
@@ -82,18 +92,21 @@ const Homepage = () => {
               <h2 className="font-primary text-3xl text-white font-semibold leading-5 antialiased">Live Auctions</h2>
             </div>
             <div className="flex gap-6 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2">
-              {displayData.map((nft, index) => (
-                <NftCard
-                  id={nft.id}
-                  key={index}
-                  image={nft.image}
-                  title={nft.title}
-                  profile={nft.profile}
-                  price={nft.price}
-                  name={nft.name}
-                  currency={nft.currency}
-                />
-              ))}
+              {nfts.map((nft, index) => {
+                const saleEndDate = new Date(nft.saleEndDate);
+                return (saleEndDate >= curr)
+                  ? 
+                  <NftCard
+                    id={nft.id}
+                    key={index}
+                    image={nft.image}
+                    title={nft.title}
+                    profile={nft.profile}
+                    price={nft.price}
+                    name={nft.name}
+                    currency={nft.currency} />
+                  : null
+              })}
             </div>
           </div>
         </div>
