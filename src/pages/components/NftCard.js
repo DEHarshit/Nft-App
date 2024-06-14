@@ -14,7 +14,7 @@ export default function NftCard({ id, image, title, name, price, currency }) {
           style={{
             width: "222px",
             height: "222px",
-            backgroundImage: `URL(${imageUrl})`,
+            backgroundImage: `URL(${imageUrl}),URL(/placeholder.png)`,
             backgroundPosition: "center",
             backgroundSize: "cover"
           }}
