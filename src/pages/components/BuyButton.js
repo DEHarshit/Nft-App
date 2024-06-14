@@ -5,7 +5,6 @@ import { sepolia } from 'wagmi/chains';
 import urform from './urform.json';
 import { useState } from 'react'
 
-
 function BuyButton({ id, userid, sellerid, price }) {
   const [loading, setLoading] = useState(false);
   const { address, isConnected } = useAccount();
@@ -37,7 +36,7 @@ function BuyButton({ id, userid, sellerid, price }) {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ id, newName: userid }), // Change 'nabeel' to the new owner's name
+          body: JSON.stringify({ id, newName: userid }),
         });
 
         console.log(JSON.stringify({ id, newName: userid }));

@@ -1,1 +1,101 @@
-[{"id":1,"image":"/nfts/futuristic-car.png","title":"Futuristic Car","saleEndDate":null,"price":null,"currency":"ETH","description":"The future is now, old man","name":"Harshit","useraddr":"0x6307326A6325e0D60d12070905293C9BFaa44f59"},{"id":2,"image":"/nfts/the-world-21.png","title":"The World 21","saleEndDate":"2024-06-24","price":0.004,"currency":"ETH","description":"Time has now stopped.","name":"Harshit","useraddr":"0x6307326A6325e0D60d12070905293C9BFaa44f59"},{"id":3,"image":"/nfts/the-star-17.png","title":"The Star 17","saleEndDate":"2024-06-24","price":0.005,"currency":"ETH","description":"Good Grief.","name":"Harshit","useraddr":"0x6307326A6325e0D60d12070905293C9BFaa44f59"},{"id":4,"image":"/nfts/death-13.png","title":"Death 13","saleEndDate":"2024-06-18","price":0.001,"currency":"ETH","description":"Isn't it romantic to die inside a dream? \t","name":"Harshit","useraddr":"0x6307326A6325e0D60d12070905293C9BFaa44f59"},{"id":5,"image":"/nfts/the-hierophant-5.png","title":"The Hierophant 5","saleEndDate":"2024-06-19","price":0.003,"currency":"ETH","description":"No one can deflect the emerald splash! ","name":"Harshit","useraddr":"0x6307326A6325e0D60d12070905293C9BFaa44f59"},{"id":6,"image":"/nfts/the-moon-18.png","title":"The Moon 18","saleEndDate":"2024-06-19","price":0.003,"currency":"ETH","description":"Welcome to the world of Dark Blue Moon.","name":"Harshit","useraddr":"0x6307326A6325e0D60d12070905293C9BFaa44f59"},{"id":7,"image":"/nfts/the-hermit-9.png","title":"The Hermit 9","saleEndDate":"2024-06-18","price":0.004,"currency":"BTH","description":"The thorns on my hand?","name":"Harshit","useraddr":"0x6307326A6325e0D60d12070905293C9BFaa44f59"}]
+[
+  {
+    "id": 1,
+    "image": "/nfts/futuristic-car.png",
+    "title": "Futuristic Car",
+    "saleEndDate": null,
+    "price": null,
+    "currency": "ETH",
+    "description": "The future is now, old man",
+    "name": "Harshit",
+    "useraddr": "0x6307326A6325e0D60d12070905293C9BFaa44f59"
+  },
+  {
+    "id": 2,
+    "image": "/nfts/the-world-21.png",
+    "title": "The World 21",
+    "saleEndDate": "2024-06-24",
+    "price": 0.004,
+    "currency": "ETH",
+    "description": "Time has now stopped.",
+    "name": "Harshit",
+    "useraddr": "0x6307326A6325e0D60d12070905293C9BFaa44f59"
+  },
+  {
+    "id": 3,
+    "image": "/nfts/the-star-17.png",
+    "title": "The Star 17",
+    "saleEndDate": "2024-06-24",
+    "price": 0.005,
+    "currency": "ETH",
+    "description": "Good Grief.",
+    "name": "Harshit",
+    "useraddr": "0x6307326A6325e0D60d12070905293C9BFaa44f59"
+  },
+  {
+    "id": 4,
+    "image": "/nfts/death-13.png",
+    "title": "Death 13",
+    "saleEndDate": "2024-06-19",
+    "price": 0.003,
+    "currency": "ETH",
+    "description": "Isn't it romantic to die inside a dream? \t",
+    "name": "Abhinav",
+    "useraddr": "0x6307326A6325e0D60d12070905293C9BFaa44f59"
+  },
+  {
+    "id": 5,
+    "image": "/nfts/the-hierophant-5.png",
+    "title": "The Hierophant 5",
+    "saleEndDate": "2024-06-19",
+    "price": 0.003,
+    "currency": "ETH",
+    "description": "No one can deflect the emerald splash! ",
+    "name": "Harshit",
+    "useraddr": "0x6307326A6325e0D60d12070905293C9BFaa44f59"
+  },
+  {
+    "id": 6,
+    "image": "/nfts/the-moon-18.png",
+    "title": "The Moon 18",
+    "saleEndDate": null,
+    "price": null,
+    "currency": "ETH",
+    "description": "Welcome to the world of Dark Blue Moon.",
+    "name": "Abhinav",
+    "useraddr": "0x6307326A6325e0D60d12070905293C9BFaa44f59"
+  },
+  {
+    "id": 7,
+    "image": "/nfts/the-hermit-9.png",
+    "title": "The Hermit 9",
+    "saleEndDate": "2024-06-18",
+    "price": 0.004,
+    "currency": "BTH",
+    "description": "The thorns on my hand?",
+    "name": "Harshit",
+    "useraddr": "0x6307326A6325e0D60d12070905293C9BFaa44f59"
+  },
+  {
+    "id": 8,
+    "image": "/nfts/dlc-shadow-of-the-erdtree.png",
+    "title": "DLC-Shadow Of The Erdtree",
+    "saleEndDate": "2024-06-20",
+    "price": 0.003,
+    "currency": "BTH",
+    "description": "death",
+    "name": "Abhinav",
+    "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
+  },
+  {
+    "id": 9,
+    "image": "/nfts/elden-ring.png",
+    "title": "Elden Ring",
+    "saleEndDate": "2024-06-16",
+    "price": 0.002,
+    "currency": "BTH",
+    "description": "Souls-Borne",
+    "name": "Abhinav",
+    "useraddr": "0x40153856d73F85069121448693B6785CE69C48e7"
+  }
+]

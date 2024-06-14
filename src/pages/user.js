@@ -23,8 +23,8 @@ export default function User() {
 
 
     const userNfts = nfts.filter(nft => nft.name === name);
-    const userSales = nfts.filter(nft => nft.saleEndDate !== null).length;
-    const userNotSales = nfts.filter(nft => nft.saleEndDate === null).length;
+    const userSales = userNfts.filter(nft => nft.saleEndDate !== null).length;
+    const userNotSales = userNfts.filter(nft => nft.saleEndDate === null).length;
     const userNftCount = userNfts.length;
 
     if (!user || !curruser) {
