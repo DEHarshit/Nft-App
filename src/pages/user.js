@@ -1,20 +1,30 @@
-import Header from './components/Header'
-import Footer from './components/Footer'
-import NftCard from './components/NftCard'
+import Header from './components/Header';
+import Footer from './components/Footer';
+import NftCard from './components/NftCard';
 import { useRouter } from 'next/router';
-import nftData from "./components/form.json"
-import Link from 'next/link'
+import nftData from "./components/form.json";
+import Link from 'next/link';
 import urform from './components/urform.json';
-
 import { useAccount } from 'wagmi';
+import { useState } from 'react';
 
-export default function user() {
+export default function User() {
     const { address, isConnected } = useAccount();
     const router = useRouter();
     const { name } = router.query;
     const user = urform.find(e => e.userid === name);
-
     const curruser = urform.find(e => e.useraddr === address);
+
+    const [nfts, setNfts] = useState(nftData);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedNftId, setSelectedNftId] = useState(null);
+    const [salePrice, setSalePrice] = useState('');
+    const [saleEndDate, setSaleEndDate] = useState('');
+
+    // Calculate user's total number of NFTs
+    const userNfts = nfts.filter(nft => nft.name === name);
+    const userNftCount = userNfts.length;
+
     if (!user || !curruser) {
         return (
             <div>
@@ -22,10 +32,93 @@ export default function user() {
             </div>
         )
     }
-    console.log(user)
-    console.log(curruser)
+
+    const openModal = (nftId) => {
+        setSelectedNftId(nftId);
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+        setSelectedNftId(null);
+        setSalePrice('');
+        setSaleEndDate('');
+    };
+
+    const handleListForSale = async () => {
+        if (salePrice && saleEndDate && selectedNftId) {
+            try {
+                const response = await fetch('./api/updateNft', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nftId: selectedNftId,
+                        price: parseFloat(salePrice),
+                        saleEndDate: saleEndDate
+                    })
+                });
+
+                if (response.ok) {
+                    const updatedNfts = nfts.map(nft => {
+                        if (nft.id === selectedNftId) {
+                            return {
+                                ...nft,
+                                price: parseFloat(salePrice),
+                                saleEndDate: saleEndDate
+                            };
+                        }
+                        return nft;
+                    });
+                    setNfts(updatedNfts);
+                    closeModal();
+                } else {
+                    alert('Failed to update NFT');
+                }
+            } catch (error) {
+                console.error('Error updating NFT:', error);
+                alert('Failed to update NFT');
+            }
+        } else {
+            alert('Please enter sale price and end date');
+        }
+    };
+
+    const handleCancelSale = async (nftId) => {
+        try {
+            const response = await fetch('./api/removeNftFromSale', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nftId: nftId
+                })
+            });
+
+            if (response.ok) {
+                const updatedNfts = nfts.map(nft => {
+                    if (nft.id === nftId) {
+                        return {
+                            ...nft,
+                            saleEndDate: null // Remove sale end date
+                        };
+                    }
+                    return nft;
+                });
+                setNfts(updatedNfts);
+            } else {
+                alert('Failed to cancel sale');
+            }
+        } catch (error) {
+            console.error('Error canceling sale:', error);
+            alert('Failed to cancel sale');
+        }
+    };
+
     return (
-        <div className="flex flex-col min-h-screen bg-zinc-900">
+        <div className="flex flex-col min-h-screen bg-zinc-900 relative">
             <div className="flex-1" style={{ backgroundImage: `url(/banner.jpg)` }}>
                 <div className='w-screen lg:h-[38vh]'>
                     <div className='sticky top-0 z-30'>
@@ -34,7 +127,7 @@ export default function user() {
                 </div>
             </div>
             <div className='flex flex-col lg:flex-row relative'>
-                <div className='hidden lg:block md:block w-full lg:w-auto'> {/* Large & Medium Block */}
+                <div className='hidden lg:block md:block w-full lg:w-auto'>
                     <div className='flex flex-1'>
                         <div className='absolute inset-0 z-10'>
                             <hr className="-translate-y-6 object-center w-screen h-2 my-4 border-0 bg-gradient-to-r from-indigo-700 to-purple-900"></hr>
@@ -69,6 +162,10 @@ export default function user() {
                                             </span>
                                         </h2>
                                     </div>
+                                </div >
+                                <div className="p-4 bg-gradient-to-b from-indigo-700 to-purple-900 rounded-lg mt-2 mb-4">
+                                    <span className="block text-lg text-white font-bold mb-1">Total NFTs</span>
+                                    <span className="block text-4xl text-white">{userNftCount}</span>
                                 </div>
                             </div>
                             <div className='flex-1 bg-zinc-900 border-l-2 border-zinc-800'>
@@ -79,19 +176,37 @@ export default function user() {
                                         </h2>
                                     </div>
                                     <div className='grid grid-cols-4 gap-5'>
-                                        {nftData.map((nft, index) => (
+                                        {nfts.map((nft, index) => (
                                             nft.name === name ?
                                                 (
-                                                    <NftCard
-                                                        key={index}
-                                                        id={nft.id}
-                                                        image={nft.image}
-                                                        title={nft.title}
-                                                        profile={nft.profile}
-                                                        price={nft.price}
-                                                        name={nft.name}
-                                                        currency={nft.currency}
-                                                    />) : null
+                                                    <div key={index}>
+                                                        <NftCard
+                                                            id={nft.id}
+                                                            image={nft.image}
+                                                            title={nft.title}
+                                                            profile={nft.profile}
+                                                            price={nft.price}
+                                                            name={nft.name}
+                                                            currency={nft.currency}
+                                                        />
+                                                        {user.userid === curruser.userid && !nft.saleEndDate && (
+                                                            <button
+                                                                onClick={() => openModal(nft.id)}
+                                                                className="mt-2 p-2 bg-blue-500 text-white rounded"
+                                                            >
+                                                                List for Sale
+                                                            </button>
+                                                        )}
+                                                        {user.userid === curruser.userid && nft.saleEndDate && (
+                                                            <button
+                                                                onClick={() => handleCancelSale(nft.id)}
+                                                                className="mt-2 p-2 bg-red-500 text-white rounded"
+                                                            >
+                                                                Cancel Sale
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                ) : null
                                         ))}
                                     </div>
                                 </div>
@@ -100,7 +215,46 @@ export default function user() {
                     </div>
                 </div>
             </div>
+            {modalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-black p-8 rounded-lg">
+                        <h2 className="text-lg font-semibold mb-4">List NFT for Sale</h2>
+                        <label className="block mb-2 text-white">
+                            Sale Price (ETH):
+                            <input
+                                type="number"
+                                step="0.0001"
+                                className="border border-gray-300 bg-grey rounded px-2 py-1 w-full text-black"
+                                value={salePrice}
+                                onChange={(e) => setSalePrice(e.target.value)}
+                            />
+                        </label>
+                        <label className="block mb-4 text-white">
+                            Sale End Date (YYYY-MM-DD):
+                            <input
+                                type="date"
+                                className="border border-gray-300 rounded px-2 py-1 w-full"
+                                value={saleEndDate}
+                                onChange={(e) => setSaleEndDate(e.target.value)}
+                            />
+                        </label>
+                        <div className="flex justify-end">
+                            <button
+                                onClick={handleListForSale}
+                                className="text-white px-4 py-2 rounded hover:bg-white hover:text-black"
+                            >
+                                List for Sale
+                            </button>
+                            <button
+                                onClick={closeModal}
+                                className="ml-2 bg-white text-black px-4 py-2 rounded hover:bg-black hover:text-white"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
-
     )
 }
