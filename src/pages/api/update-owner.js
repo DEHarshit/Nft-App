@@ -16,6 +16,7 @@ export default async function handler(req, res) {
             }
 
             objectData[nftIndex].name = newName;
+            objectData[nftIndex].saleEndDate = null;
 
             const updatedData = JSON.stringify(objectData);
 
