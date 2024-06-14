@@ -16,7 +16,7 @@ export default function Header() {
             console.log(urform)
             const userExists = urform.find(e => e.useraddr === address);
             if (!userExists) {
-                router.push('/create_account');
+                setTimeout(()=>router.push('/create_account'),500);
             } else {
                 setIsUserValid(true);
                 setUser(urform.find(e=> e.useraddr === address))
@@ -50,7 +50,7 @@ export default function Header() {
                 <ul className="flex items-center">
                     <li><Link href="/"><button className={styles.button}>Home</button></Link></li>
                     <li><Link href="/nft"><button className={styles.button}>Explore NFTs</button></Link></li>
-                    <li><Link href={`/form?name=${user.userid}`}><button className={styles.button}>Create NFT</button></Link></li>
+                    <li><Link href={`/form`}><button className={styles.button}>Create NFT</button></Link></li>
                     <li><Link href="/contact"><button className={styles.button}>Contact Us</button></Link></li>
                     <li><ConnectButton /></li>
                     <li>

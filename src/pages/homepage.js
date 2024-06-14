@@ -7,18 +7,12 @@ import { useEffect, useState } from 'react';
 
 const Homepage = () => {
 
-  const MAX_DISPLAY = 4;
-  const [ind,setInd] = useState(0);
-  const [nfts,setNfts] = useState([])
+  const [nfts, setNfts] = useState([])
   const curr = new Date();
 
-  useEffect(()=>{
-    if (ind < 4){
-      setNfts(nftData.filter(nft => new Date(nft.saleEndDate) >= curr))
-      setInd(ind+1)
-      console.log(nfts)
-    }
-  },[ind])
+  useEffect(() => {
+    setNfts(nftData.filter(nft => new Date(nft.saleEndDate) >= curr).slice(0, 4))
+  }, [])
 
   return (
     <div>
@@ -41,9 +35,11 @@ const Homepage = () => {
                 Explore
               </button>
             </Link>
-            <button className="font-primary h-12 w-36 border-solid bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
-              Create
-            </button>
+            <Link href={`/form`}>
+              <button className="font-primary h-12 w-36 border-solid bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
+                Create
+              </button>
+            </Link>
           </div>
         </div>
         <div className="absolute inset-0">
@@ -95,7 +91,7 @@ const Homepage = () => {
               {nfts.map((nft, index) => {
                 const saleEndDate = new Date(nft.saleEndDate);
                 return (saleEndDate >= curr)
-                  ? 
+                  ?
                   <NftCard
                     id={nft.id}
                     key={index}

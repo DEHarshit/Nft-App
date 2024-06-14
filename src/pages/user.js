@@ -21,8 +21,10 @@ export default function User() {
     const [salePrice, setSalePrice] = useState('');
     const [saleEndDate, setSaleEndDate] = useState('');
 
-    // Calculate user's total number of NFTs
+
     const userNfts = nfts.filter(nft => nft.name === name);
+    const userSales = nfts.filter(nft => nft.saleEndDate !== null).length;
+    const userNotSales = nfts.filter(nft => nft.saleEndDate === null).length;
     const userNftCount = userNfts.length;
 
     if (!user || !curruser) {
@@ -102,7 +104,7 @@ export default function User() {
                     if (nft.id === nftId) {
                         return {
                             ...nft,
-                            saleEndDate: null // Remove sale end date
+                            saleEndDate: null
                         };
                     }
                     return nft;
@@ -163,9 +165,19 @@ export default function User() {
                                         </h2>
                                     </div>
                                 </div >
-                                <div className="p-4 bg-gradient-to-b from-indigo-700 to-purple-900 rounded-lg mt-2 mb-4">
-                                    <span className="block text-lg text-white font-bold mb-1">Total NFTs</span>
-                                    <span className="block text-4xl text-white">{userNftCount}</span>
+                                <div className='flex font-primary'>
+                                    <div className="p-4 bg-gradient-to-b from-indigo-700 to-purple-900 rounded-l-lg border-r border-zinc-900 mt-2 mb-4 hover:scale-[1.01] transition-all">
+                                        <span className="block text-lg text-white font-bold mb-1">Total NFTs</span>
+                                        <span className="block text-4xl text-white">{userNftCount}</span>
+                                    </div>
+                                    <div className="p-4 bg-gradient-to-b from-indigo-700 to-purple-900 mt-2 border-l border-r border-zinc-900 mb-4 hover:scale-[1.01] transition-all">
+                                        <span className="block text-lg text-white font-bold mb-1">On Sale</span>
+                                        <span className="block text-4xl text-white">{userSales}</span>
+                                    </div>
+                                    <div className="p-4 bg-gradient-to-b from-indigo-700 to-purple-900 rounded-r-lg border-l border-zinc-900 mt-2 mb-4 hover:scale-[1.01] transition-all">
+                                        <span className="block text-lg text-white font-bold mb-1">Not On Sale</span>
+                                        <span className="block text-4xl text-white">{userNotSales}</span>
+                                    </div>
                                 </div>
                             </div>
                             <div className='flex-1 bg-zinc-900 border-l-2 border-zinc-800'>
@@ -192,7 +204,7 @@ export default function User() {
                                                         {user.userid === curruser.userid && !nft.saleEndDate && (
                                                             <button
                                                                 onClick={() => openModal(nft.id)}
-                                                                className="mt-2 p-2 bg-blue-500 text-white rounded"
+                                                                className="mt-2 p-2 bg-purple-900 text-white rounded -translate-y-[70px] translate-x-[165px] shadow-md hover:bg-white hover:text-black hover:shadow-purple-900 hover:scale-[1.1] transition-all"
                                                             >
                                                                 List for Sale
                                                             </button>
@@ -200,7 +212,7 @@ export default function User() {
                                                         {user.userid === curruser.userid && nft.saleEndDate && (
                                                             <button
                                                                 onClick={() => handleCancelSale(nft.id)}
-                                                                className="mt-2 p-2 bg-red-500 text-white rounded"
+                                                                className="mt-2 p-2 bg-red-500 text-white rounded -translate-y-[70px] translate-x-[165px]  shadow-md  hover:bg-white hover:text-black hover:shadow-red-500 hover:scale-[1.1] transition-all"
                                                             >
                                                                 Cancel Sale
                                                             </button>

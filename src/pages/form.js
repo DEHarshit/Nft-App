@@ -19,10 +19,16 @@ const Form = () => {
   
   const router = useRouter();
   const { address, isConnected } = useAccount();
-  console.log(address);
-  const { name } = router.query;
-  console.log(name)
   const [image, setImage] = useState('');
+  const user = urform.find(ele => ele.useraddr == address);
+  if(!user){
+    return (
+      <div>
+        Loading...
+      </div>
+    )
+  }
+  console.log(user)
   function handleImageChange(e) {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -59,7 +65,7 @@ const Form = () => {
       currency: values.currency,
       description: values.description,
       address: address,
-      name: name
+      name: user.userid
     };
     
     async function saveData() {
@@ -119,7 +125,10 @@ const Form = () => {
         </svg>
       </div>
       <div className="flex flex-col space-y-2 w-[4500px] rounded-lg items-center relative inset-0 inline-block opacity-70 bg-zinc-900 z-10 max-w-lg mx-auto p-4 mb-4">
-        <h2 className="font-primary text-5xl font-semibold bg-gradient-to-r from-indigo-700 to-purple-900 inline-block text-transparent bg-clip-text">NFT + +</h2>
+        <div className="inline-flex flex-col items-center gap-4 mb-4">
+            <h2 className="font-primary font-semibold text-5xl bg-gradient-to-r from-indigo-700 to-purple-900 inline-block text-transparent bg-clip-text">Add A New NFT++</h2>
+            <hr className="w-[300px] h-0.5 border-0 bg-gradient-to-r from-indigo-700 to-purple-900"></hr>
+          </div>
         <Formik
           initialValues={{
             title: '',
@@ -140,8 +149,8 @@ const Form = () => {
                     backgroundImage: `url(${image})`,
                     backgroundPosition: `center`,
                     backgroundSize: `cover`
-                  }} className=" h-[250px] w-[250px] text-black text-2xl font-semibold rounded-lg border-black bg-blue-100">
-                    <div className='relative transition-all flex items-center justify-center h-[250px] w-[250px] opacity-60 hover:text-white text-transparent hover:bg-blue-900 border-4 border-black rounded-lg'>
+                  }} className=" h-[250px] w-[250px] text-black text-2xl font-semibold rounded-lg border-black bg-transparent">
+                    <div className=' relative transition-all flex items-center justify-center h-[250px] w-[250px] opacity-60 text-white hover:text-transparent hover:bg-zinc-800 border-4 border-black rounded-lg'>
                       <label className='inset-0'>Add Image</label>
                       <input type="file" accept="image/*" className='opacity-0 absolute inset-0' onChange={handleImageChange} />
                     </div>
@@ -175,7 +184,6 @@ const Form = () => {
               <div className="mb-4">
                 <label className="block text-sm text-white font-medium text-gray-700">Currency</label>
                 <Field as="select" name="currency" className="text-black mt-1 p-2 border border-gray-300 rounded w-full">
-                  <option value="BTH">BTH</option>
                   <option value="ETH">ETH</option>
                 </Field>
                 {errors.currency && touched.currency ? (
@@ -191,7 +199,7 @@ const Form = () => {
                 ) : null}
               </div>
 
-              <button type="submit" onclick={handleSubmit}className="mt-4 w-32 h-12 text-white px-4 py-2 bg-zinc-800 rounded hover:bg-white hover:text-zinc-800 hover:shadow-lg hover:shadow-white/50"
+              <button type="submit" onclick={handleSubmit}className="mt-4 w-32 h-12 text-white hover:text-md hover:font-bold px-4 py-2 bg-purple-900 transition-all rounded hover:bg-white hover:text-zinc-800 hover:shadow-lg hover:shadow-white/50"
                 >
                 Submit
               </button>
